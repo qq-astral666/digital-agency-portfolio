@@ -1,8 +1,36 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 1. Анимация появления элементов при скролле (Intersection Observer)
-    const fadeElements = document.querySelectorAll('.animate-fade');
+    // 1. МОБИЛЬНОЕ БУРГЕР-МЕНЮ (Железная логика)
+    const burgerBtn = document.querySelector('.burger');
+    const navMenu = document.querySelector('.nav');
 
+    if (burgerBtn && navMenu) {
+        burgerBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            burgerBtn.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Закрытие меню при клике по ссылкам навигации
+        const navLinks = navMenu.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                burgerBtn.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Закрытие по клику в любую область экрана
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !burgerBtn.contains(e.target)) {
+                burgerBtn.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+    }
+
+    // 2. АНИМАЦИЯ ПОЯВЛЕНИЯ ПРИ СКРОЛЛЕ
+    const fadeElements = document.querySelectorAll('.animate-fade');
     const appearanceObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -13,11 +41,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.05 });
 
     fadeElements.forEach(el => appearanceObserver.observe(el));
+    setTimeout(() => {
+        const heroContent = document.querySelector('.hero-content');
+        if(heroContent) heroContent.classList.add('visible');
+    }, 100);
 
-
-    // 2. Валидация формы обратной связи
+    // 3. ВАЛИДАЦИЯ ФОРМЫ
     const form = document.getElementById('contactForm');
-
     if (form) {
         const nameInput = document.getElementById('userName');
         const emailInput = document.getElementById('userEmail');
@@ -35,12 +65,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-
             const isNameValid = validateInput(nameInput, nameInput.value.trim().length >= 2);
             const isEmailValid = validateInput(emailInput, /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim()));
 
             if (isNameValid && isEmailValid) {
-                alert('Заявка успешно отправлена! Менеджер свяжется с вами.');
+                alert('Заявка успешно отправлена!');
                 form.reset();
             }
         });
@@ -49,8 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
         emailInput.addEventListener('input', () => validateInput(emailInput, /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim())));
     }
 
-
-    // 3. Динамический счетчик цифр в статистике (Главная страница)
+    // 4. СЧЕТЧИК СТАТИСТИКИ
     const statNumbers = document.querySelectorAll('.stat-number');
     if (statNumbers.length > 0) {
         const startCounting = (entries, observer) => {
@@ -70,116 +98,11 @@ document.addEventListener('DOMContentLoaded', () => {
                             clearInterval(counter);
                         }
                     }, stepTime);
-
                     observer.unobserve(target);
                 }
             });
         };
-
         const statsObserver = new IntersectionObserver(startCounting, { threshold: 0.5 });
         statNumbers.forEach(num => statsObserver.observe(num));
     }
-
-
-    // 4. Логика FAQ Аккордеона (Страница услуг)
-    const accordionHeaders = document.querySelectorAll('.accordion-header');
-    accordionHeaders.forEach(header => {
-        header.addEventListener('click', () => {
-            const item = header.parentElement;
-            const isOpened = item.classList.contains('active');
-            document.querySelectorAll('.accordion-item').forEach(el => el.classList.remove('active'));
-            if (!isOpened) {
-                item.classList.add('active');
-            }
-        });
-    });
-
-
-    // 5. Фильтрация Портфолио по табам (Прямое переключение классов без конфликтов)
-    const tabButtons = document.querySelectorAll('.tab-btn');
-    const portfolioItems = document.querySelectorAll('.portfolio-item');
-
-    if (tabButtons.length > 0 && portfolioItems.length > 0) {
-        tabButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Активный класс для нажатой кнопки
-                tabButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-
-                const filterValue = button.getAttribute('data-filter');
-
-                portfolioItems.forEach(item => {
-                    const category = item.getAttribute('data-category');
-
-                    if (filterValue === 'all' || category === filterValue) {
-                        // Показываем элемент: убираем класс скрытия и принудительно сбрасываем inline-стили
-                        item.classList.remove('portfolio-item-hidden');
-                        item.style.opacity = '1';
-                        item.style.transform = 'translateY(0)';
-                    } else {
-                        // Скрываем элемент через класс
-                        item.classList.add('portfolio-item-hidden');
-                    }
-                });
-            });
-        });
-    }
-
-
-    // 6. Модальное окно для кейсов (Лайтбокс)
-    const modal = document.getElementById('portfolioModal');
-    if (modal && portfolioItems.length > 0) {
-        const modalClose = modal.querySelector('.modal-close');
-        const modalTitle = modal.querySelector('.modal-title');
-        const modalDesc = modal.querySelector('.modal-desc');
-        const modalTag = modal.querySelector('.modal-tag');
-
-        portfolioItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const title = item.getAttribute('data-title');
-                const desc = item.getAttribute('data-desc');
-                const tagEl = item.querySelector('.item-tag');
-                const tag = tagEl ? tagEl.textContent : 'Кейс';
-
-                modalTitle.textContent = title || 'Название проекта';
-                modalDesc.textContent = desc || 'Описание скоро появится...';
-                modalTag.textContent = tag;
-
-                modal.classList.add('open');
-                document.body.style.overflow = 'hidden';
-            });
-        });
-
-        modalClose.addEventListener('click', () => {
-            modal.classList.remove('open');
-            document.body.style.overflow = '';
-        });
-
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.classList.remove('open');
-                document.body.style.overflow = '';
-            }
-        });
-    }
 });
-
-    // 7. Мобильное бургер-меню (Для открытия навигации на телефонах)
-    const burgerBtn = document.querySelector('.burger');
-    const navMenu = document.querySelector('.nav');
-
-    if (burgerBtn && navMenu) {
-        burgerBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); // Предотвращаем мгновенное закрытие по клику на саму кнопку
-            burgerBtn.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        // Закрываем меню, если кликнули в любое другое место экрана
-        document.addEventListener('click', (e) => {
-            if (!navMenu.contains(e.target) && !burgerBtn.contains(e.target)) {
-                burgerBtn.classList.remove('active');
-                navMenu.classList.remove('active');
-            }
-        });
-    }

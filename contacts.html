@@ -8,104 +8,99 @@
 </head>
 <body>
 
-    <!-- Навигация -->
-    <header class="header">
-        <a href="index.html" class="logo">Digital<span>Go</span></a>
-        <nav class="nav">
-            <a href="services.html">Услуги</a>
-            <a href="portfolio.html">Портфолио</a>
-            <a href="about.html">О нас</a>
-            <a href="contacts.html" class="active">Контакты</a>
-        </nav>
-        <button class="burger" aria-label="Открыть меню">
-            <span></span>
-        </button>
-    </header>
+<!-- Навигация -->
+<header class="header">
+    <a href="index.html" class="logo">Digital<span>Go</span></a>
+    <nav class="nav">
+        <a href="index.html">Главная</a>
+        <a href="services.html">Услуги</a>
+        <a href="portfolio.html">Портфолио</a>
+        <a href="about.html">О нас</a>
+        <a href="contacts.html" class="active">Контакты</a>
+    </nav>
+    <button class="burger" aria-label="Открыть меню">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+    </button>
+</header>
 
-    <!-- Основной контент страницы -->
-    <main class="page-wrapper">
+<!-- Основной контент страницы -->
+<main class="page-wrapper">
+    <section class="page-header">
+        <h1>Наши контакты</h1>
+        <p>Свяжитесь с нами любым удобным способом или оставьте заявку для оперативного расчета стоимости.</p>
+    </section>
 
-        <section class="page-header">
-            <h1>Наши контакты</h1>
-            <p>Свяжитесь с нами любым удобным способом или оставьте заявку для оперативного расчета стоимости.</p>
-        </section>
-
-        <section class="contacts-grid-layout">
-
-            <!-- Левая колонка: Информация -->
-            <div class="contacts-card-info animate-fade visible">
-                <h2>Наш офис</h2>
-
-                <div class="contact-block-item">
-                    <span class="contact-icon">📍</span>
-                    <div>
-                        <strong>Адрес представительства:</strong>
-                        <p>г. Москва, ул. Новая площадь, д. 10, бизнес-центр «Вектор», офис 42</p>
-                    </div>
-                </div>
-
-                <div class="contact-block-item">
-                    <span class="contact-icon">📞</span>
-                    <div>
-                        <strong>Телефон многоканальный:</strong>
-                        <p><a href="tel:+74950000000">+7 (495) 000-00-00</a></p>
-                    </div>
-                </div>
-
-                <div class="contact-block-item">
-                    <span class="contact-icon">✉️</span>
-                    <div>
-                        <strong>Почта для общих вопросов:</strong>
-                        <p><a href="mailto:info@digitalgo.ru">info@digitalgo.ru</a></p>
-                    </div>
+    <section class="contacts-grid-layout">
+        <!-- Левая колонка: Информация -->
+        <div class="contacts-card-info animate-fade">
+            <h2>Наш офис</h2>
+            <div class="contact-block-item">
+                <span class="contact-icon">📍</span>
+                <div>
+                    <strong>Адрес представительства:</strong>
+                    <p>г. Москва, ул. Новая площадь, д. 10, бизнес-центр «Вектор», офис 42</p>
                 </div>
             </div>
-
-            <!-- Правая колонка: Форма -->
-            <div class="contacts-card-form animate-fade visible">
-                <h2>Обсудить задачу</h2>
-                <form id="contactForm" class="form" novalidate>
-                    <div class="form-group">
-                        <label for="userName" class="form-label">Ваше имя и фамилия</label>
-                        <input type="text" id="userName" required placeholder="Иван Иванов">
-                        <span class="error-msg">Имя должно быть не короче 2 символов</span>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="userEmail" class="form-label">Электронная почта</label>
-                        <input type="email" id="userEmail" required placeholder="example@mail.ru">
-                        <span class="error-msg">Введите корректный email</span>
-                    </div>
-
-                    <button type="submit" class="btn btn-block">Отправить запрос</button>
-                </form>
+            <div class="contact-block-item">
+                <span class="contact-icon">📞</span>
+                <div>
+                    <strong>Телефон многоканальный:</strong>
+                    <p><a href="tel:+74950000000">+7 (495) 000-00-00</a></p>
+                </div>
             </div>
-
-        </section>
-    </main>
-
-        <!-- Подвал сайта (Футер) -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-brand">
-                <a href="index.html" class="logo">Digital<span>Go</span></a>
-                <p>DigitalGo Holding Inc. — международная технологическая корпорация. Проектируем и масштабируем цифровые экосистемы для бизнеса на рынках СНГ, Азии и Европы. Лидеры отрасли по версии TechRating 2025.</p>
-            </div>
-            <div class="footer-links">
-                <h4>Навигация</h4>
-                <a href="services.html">Услуги</a>
-                <a href="portfolio.html">Кейсы</a>
-                <a href="about.html">О корпорации</a>
-                <a href="contacts.html">Контакты</a>
-            </div>
-            <div class="footer-legal">
-                <h4>Правовая информация</h4>
-                <p>© 2017—2026 DigitalGo Corporation. Все права защищены.</p>
-                <p>Содержимое сайта не является публичной офертой. Политика конфиденциальности. Пользовательское соглашение.</p>
+            <div class="contact-block-item">
+                <span class="contact-icon">✉️</span>
+                <div>
+                    <strong>Почта для общих вопросов:</strong>
+                    <p><a href="mailto:info@digitalgo.ru">info@digitalgo.ru</a></p>
+                </div>
             </div>
         </div>
-    </footer>
 
-    <script src="script.js"></script>
+        <!-- Правая колонка: Форма -->
+        <div class="contacts-card-form animate-fade">
+            <h2>Обсудить задачу</h2>
+            <form id="contactForm" class="form" novalidate>
+                <div class="form-group">
+                    <label for="userName" class="form-label">Ваше имя и фамилия</label>
+                    <input type="text" id="userName" required placeholder="Иван Иванов">
+                    <span class="error-msg">Имя должно быть не короче 2 символов</span>
+                </div>
+                <div class="form-group">
+                    <label for="userEmail" class="form-label">Электронная почта</label>
+                    <input type="email" id="userEmail" required placeholder="example@mail.ru">
+                    <span class="error-msg">Введите корректный email</span>
+                </div>
+                <button type="submit" class="btn btn-block">Отправить запрос</button>
+            </form>
+        </div>
+    </section>
+</main>
+
+<!-- Подвал сайта -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-brand">
+            <a href="index.html" class="logo">Digital<span>Go</span></a>
+            <p>DigitalGo Holding Inc. — международная технологическая корпорация. Проектируем и масштабируем цифровые
+                экосистемы для бизнеса.</p>
+        </div>
+        <div class="footer-links">
+            <h4>Навигация</h4>
+            <a href="services.html">Услуги</a>
+            <a href="portfolio.html">Кейсы</a>
+            <a href="about.html">О корпорации</a>
+            <a href="contacts.html">Контакты</a>
+        </div>
+        <div class="footer-legal">
+            <h4>Правовая информация</h4>
+            <p>© 2017—2026 DigitalGo Corporation. Все права защищены.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>

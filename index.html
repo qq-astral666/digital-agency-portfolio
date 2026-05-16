@@ -3,121 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Agency | Комплексное продвижение и разработка</title>
+    <title>Digital Agency | Главная</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Навигация -->
-    <header class="header">
-        <a href="index.html" class="logo">Digital<span>Go</span></a>
-        <nav class="nav">
+<!-- Навигация -->
+<header class="header">
+    <a href="index.html" class="logo">Digital<span>Go</span></a>
+    <nav class="nav">
+        <a href="index.html" class="active">Главная</a>
+        <a href="services.html">Услуги</a>
+        <a href="portfolio.html">Портфолио</a>
+        <a href="about.html">О нас</a>
+        <a href="contacts.html">Контакты</a>
+    </nav>
+    <button class="burger" aria-label="Открыть меню">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+    </button>
+</header>
+
+<!-- Главный баннер -->
+<section class="hero">
+    <div class="hero-content animate-fade">
+        <span class="badge">Performance & Разработка</span>
+        <h1>Создаем цифровые экосистемы для лидеров рынка</h1>
+        <p>Проектируем высоконагруженные сайты, запускаем сквозную аналитику и увеличиваем продажи с помощью
+            комплексного performance-маркетинга.</p>
+        <div class="hero-actions">
+            <a href="portfolio.html" class="btn">Смотреть кейсы</a>
+            <a href="contacts.html" class="btn btn-outline">Обсудить проект</a>
+        </div>
+    </div>
+</section>
+
+<!-- Секция с цифрами -->
+<section class="stats">
+    <div class="stat-item">
+        <div class="stat-number" data-target="154">0</div>
+        <p>Успешных проектов</p>
+    </div>
+    <div class="stat-item">
+        <div class="stat-number" data-target="42">0</div>
+        <p>Крупных брендов на поддержке</p>
+    </div>
+    <div class="stat-item">
+        <div class="stat-number" data-target="98">0</div>
+        <p>% клиентов рекомендуют нас</p>
+    </div>
+</section>
+
+<!-- Краткий блок услуг на главной -->
+<section class="home-services">
+    <div class="section-title">
+        <h2>Направления нашей экспертизы</h2>
+        <p>Фокусируемся на бизнес-метриках и качестве кодовой базы.</p>
+    </div>
+    <div class="home-services-grid">
+        <div class="h-service-card animate-fade">
+            <div class="h-icon">01</div>
+            <h3>E-commerce & Web</h3>
+            <p>Разработка интернет-магазинов, интеграция с 1С, ERP и CRM системами.</p>
+        </div>
+        <div class="h-service-card animate-fade">
+            <div class="h-icon">02</div>
+            <h3>Mobile Apps</h3>
+            <p>Проектирование и разработка нативных мобильных приложений для iOS и Android.</p>
+        </div>
+        <div class="h-service-card animate-fade">
+            <div class="h-icon">03</div>
+            <h3>Growth Marketing</h3>
+            <p>Управление контекстной, таргетированной рекламой и SEO-продвижением на основе данных.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Форма обратной связи -->
+<section class="feedback">
+    <div class="feedback-container">
+        <h2>Начнем ваш проект?</h2>
+        <p>Оставьте заявку, и наш эксперт свяжется с вами для бесплатной часовой консультации.</p>
+        <form id="contactForm" class="form" novalidate>
+            <div class="form-group">
+                <input type="text" id="userName" required placeholder="Ваше имя и фамилия">
+                <span class="error-msg">Имя должно содержать не менее 2-х букв</span>
+            </div>
+            <div class="form-group">
+                <input type="email" id="userEmail" required placeholder="Corporate Email">
+                <span class="error-msg">Пожалуйста, введите корректный рабочий email</span>
+            </div>
+            <button type="submit" class="btn btn-block">Получить стратегию развития</button>
+        </form>
+    </div>
+</section>
+
+<!-- Подвал сайта (Футер) -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-brand">
+            <a href="index.html" class="logo">Digital<span>Go</span></a>
+            <p>DigitalGo Holding Inc. — международная технологическая корпорация. Проектируем и масштабируем цифровые
+                экосистемы для бизнеса на рынках СНГ, Азии и Европы.</p>
+        </div>
+        <div class="footer-links">
+            <h4>Навигация</h4>
             <a href="services.html">Услуги</a>
-            <a href="portfolio.html">Портфолио</a>
-            <a href="about.html">О нас</a>
+            <a href="portfolio.html">Кейсы</a>
+            <a href="about.html">О корпорации</a>
             <a href="contacts.html">Контакты</a>
-        </nav>
-        <button class="burger" aria-label="Открыть меню">
-            <span></span>
-        </button>
-    </header>
+        </div>
+        <div class="footer-legal">
+            <h4>Правовая информация</h4>
+            <p>© 2017—2026 DigitalGo Corporation. Все права защищены.</p>
+        </div>
+    </div>
+</footer>
 
-    <!-- Главный баннер -->
-    <section class="hero">
-        <div class="hero-content animate-fade">
-            <span class="badge">Performance & Разработка</span>
-            <h1>Создаем цифровые экосистемы для лидеров рынка</h1>
-            <p>Проектируем высоконагруженные сайты, запускаем сквозную аналитику и увеличиваем продажи с помощью комплексного performance-маркетинга.</p>
-            <div class="hero-actions">
-                <a href="portfolio.html" class="btn">Смотреть кейсы</a>
-                <a href="contacts.html" class="btn btn-outline">Обсудить проект</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Секция с цифрами -->
-    <section class="stats">
-        <div class="stat-item">
-            <div class="stat-number" data-target="154">192</div>
-            <p>Успешных проектов</p>
-        </div>
-        <div class="stat-item">
-            <div class="stat-number" data-target="42">21</div>
-            <p>Крупных брендов на поддержке</p>
-        </div>
-        <div class="stat-item">
-            <div class="stat-number" data-target="98">90</div>
-            <p>% клиентов рекомендуют нас</p>
-        </div>
-    </section>
-
-    <!-- Краткий блок услуг на главной -->
-    <section class="home-services">
-        <div class="section-title">
-            <h2>Направления нашей экспертизы</h2>
-            <p>Фокусируемся на бизнес-метриках и качестве кодовой базы.</p>
-        </div>
-        <div class="home-services-grid">
-            <div class="h-service-card animate-fade">
-                <div class="h-icon">01</div>
-                <h3>E-commerce & Web</h3>
-                <p>Разработка интернет-магазинов, интеграция с 1С, ERP и CRM системами.</p>
-            </div>
-            <div class="h-service-card animate-fade">
-                <div class="h-icon">02</div>
-                <h3>Mobile Apps</h3>
-                <p>Проектирование и разработка нативных мобильных приложений для iOS и Android.</p>
-            </div>
-            <div class="h-service-card animate-fade">
-                <div class="h-icon">03</div>
-                <h3>Growth Marketing</h3>
-                <p>Управление контекстной, таргетированной рекламой и SEO-продвижением на основе данных.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Форма обратной связи -->
-    <section class="feedback">
-        <div class="feedback-container">
-            <h2>Начнем ваш проект?</h2>
-            <p>Оставьте заявку, и наш эксперт свяжется с вами для бесплатной часовой консультации.</p>
-            <form id="contactForm" class="form" novalidate>
-                <div class="form-group">
-                    <input type="text" id="userName" required placeholder="Ваше имя и фамилия">
-                    <span class="error-msg">Имя должно содержать не менее 2-х букв</span>
-                </div>
-                <div class="form-group">
-                    <input type="email" id="userEmail" required placeholder="Корпоративный Email">
-                    <span class="error-msg">Пожалуйста, введите корректный рабочий email</span>
-                </div>
-                <button type="submit" class="btn btn-block">Получить стратегию развития</button>
-            </form>
-        </div>
-    </section>
-
-        <!-- Подвал сайта (Футер) -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-brand">
-                <a href="index.html" class="logo">Digital<span>Go</span></a>
-                <p>DigitalGo Holding Inc. — международная технологическая корпорация. Проектируем и масштабируем цифровые экосистемы для бизнеса на рынках СНГ, Азии и Европы. Лидеры отрасли по версии TechRating 2025.</p>
-            </div>
-            <div class="footer-links">
-                <h4>Навигация</h4>
-                <a href="services.html">Услуги</a>
-                <a href="portfolio.html">Кейсы</a>
-                <a href="about.html">О корпорации</a>
-                <a href="contacts.html">Контакты</a>
-            </div>
-            <div class="footer-legal">
-                <h4>Правовая информация</h4>
-                <p>© 2017—2026 DigitalGo Corporation. Все права защищены.</p>
-                <p>Содержимое сайта не является публичной офертой. Политика конфиденциальности. Пользовательское соглашение.</p>
-            </div>
-        </div>
-    </footer>
-
-
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
