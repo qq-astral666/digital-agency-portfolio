@@ -1,0 +1,676 @@
+:root {
+    --primary: #2563eb;
+    --dark: #0f172a;
+    --light: #f8fafc;
+    --text: #334155;
+    --error: #ef4444;
+    --transition: all 0.3s ease;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: var(--light);
+    color: var(--text);
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   1. ОБЩИЕ КОМПОНЕНТЫ И ХЕДЕР (Для всех страниц)
+   ========================================================================== */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--dark);
+    text-decoration: none;
+}
+
+.logo span { color: var(--primary); }
+
+.nav a {
+    margin-left: 24px;
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.nav a:hover, .nav a.active { color: var(--primary); }
+
+.burger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* Общая обертка внутренних страниц для компенсации фиксированного хедера */
+.page-wrapper {
+    padding-top: 75px;
+    min-height: 100vh;
+}
+
+/* Общая шапка для внутренних страниц (Услуги, Портфолио, О нас, Контакты) */
+.page-header {
+    text-align: center;
+    padding: 120px 5% 60px; /* Увеличили верхний отступ, чтобы текст ушел из-под шапки */
+    background: #eff6ff;
+    margin-bottom: 40px;
+}
+
+.page-header h1 { font-size: 36px; color: var(--dark); margin-bottom: 12px; }
+.page-header p { font-size: 16px; max-width: 600px; margin: 0 auto; color: var(--text); line-height: 1.6; }
+
+/* Общие стили для интерактивных кнопок */
+.btn {
+    display: inline-block;
+    padding: 14px 28px;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 15px;
+    transition: var(--transition);
+    text-align: center;
+}
+
+.btn:hover { opacity: 0.95; transform: translateY(-1px); }
+.btn-outline { background: transparent; border: 2px solid var(--primary); color: var(--primary); }
+.btn-outline:hover { background: var(--primary); color: #fff; }
+.btn-block { width: 100%; }
+
+/* Базовые классы анимации скролла */
+.animate-fade {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.animate-fade.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   2. СТИЛИ ГЛАВНОЙ СТРАНИЦЫ (index.html)
+   ========================================================================== */
+.hero {
+    height: calc(100vh - 75px);
+    margin-top: 75px;
+    display: flex;
+    align-items: center;
+    padding: 0 5%;
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+}
+
+.hero-content { max-width: 700px; }
+.hero h1 { font-size: 46px; color: var(--dark); margin-bottom: 20px; line-height: 1.2; }
+.hero p { font-size: 18px; margin-bottom: 30px; line-height: 1.6; }
+
+.badge {
+    display: inline-block;
+    padding: 6px 14px;
+    background: rgba(37, 99, 235, 0.1);
+    color: var(--primary);
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.hero-actions { display: flex; gap: 15px; }
+
+/* Блок статистики */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding: 80px 5%;
+    background: #fff;
+    text-align: center;
+}
+
+.stat-item { padding: 20px; }
+.stat-number { font-size: 48px; font-weight: 700; color: var(--primary); margin-bottom: 10px; }
+.stats p { font-size: 16px; color: var(--text); font-weight: 500; }
+
+/* Короткий блок услуг на главной */
+.home-services { padding: 90px 5%; background: var(--light); }
+.section-title { text-align: center; margin-bottom: 50px; }
+.section-title h2 { font-size: 32px; color: var(--dark); margin-bottom: 15px; }
+.section-title p { font-size: 16px; color: var(--text); }
+
+.home-services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.h-service-card {
+    padding: 40px 30px;
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 6px rgba(15, 23, 42, 0.02);
+    transition: var(--transition);
+}
+
+.h-service-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(15, 23, 42, 0.05); }
+.h-icon { font-size: 16px; font-weight: 700; color: var(--primary); margin-bottom: 15px; opacity: 0.8; }
+.h-service-card h3 { margin-bottom: 12px; color: var(--dark); font-size: 20px; }
+.h-service-card p { line-height: 1.6; font-size: 15px; }
+
+/* Форма обратной связи */
+.feedback { padding: 90px 5%; background: #fff; }
+.feedback-container { max-width: 550px; margin: 0 auto; text-align: center; }
+.feedback h2 { font-size: 32px; color: var(--dark); margin-bottom: 12px; }
+.feedback p { color: var(--text); margin-bottom: 35px; font-size: 16px; }
+.form { text-align: left; }
+
+/* Валидация форм */
+.form-label { display: block; font-size: 14px; font-weight: 500; color: var(--dark); margin-bottom: 8px; }
+.form-group { margin-bottom: 24px; position: relative; }
+.form-group input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    outline: none;
+    font-size: 15px;
+    transition: var(--transition);
+}
+.form-group input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); }
+.error-msg { color: var(--error); font-size: 12px; display: none; margin-top: 6px; }
+.form-group.invalid input { border-color: var(--error); }
+.form-group.invalid .error-msg { display: block; }
+
+/* ==========================================================================
+   3. СТИЛИ СТРАНИЦЫ УСЛУГ (services.html)
+   ========================================================================== */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto 60px;
+    padding: 0 5%;
+}
+
+.service-card {
+    background: #fff;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03);
+    border: 1px solid #e2e8f0;
+    transition: var(--transition);
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.06);
+}
+
+.service-icon {
+    font-size: 40px;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.service-card h3 {
+    font-size: 22px;
+    color: var(--dark);
+    margin-bottom: 12px;
+}
+
+.service-card p {
+    line-height: 1.6;
+    font-size: 15px;
+    color: var(--text);
+}
+
+/* FAQ Аккордеон */
+.faq-section {
+    max-width: 800px;
+    margin: 80px auto;
+    padding: 0 5%;
+}
+
+.faq-section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 28px;
+    color: var(--dark);
+}
+
+.accordion-item {
+    background: #fff;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+}
+
+.accordion-header {
+    width: 100%;
+    padding: 22px;
+    text-align: left;
+    background: none;
+    border: none;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--dark);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.accordion-header span {
+    font-size: 20px;
+    color: var(--primary);
+    transition: var(--transition);
+}
+
+.accordion-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
+    background: #fafafa;
+}
+
+.accordion-body p {
+    padding: 22px;
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 15px;
+}
+
+.accordion-item.active .accordion-body {
+    max-height: 1000px;
+    transition: max-height 0.5s ease-in-out;
+}
+
+.accordion-item.active .accordion-header span {
+    transform: rotate(45deg);
+}
+
+/* ==========================================================================
+   4. СТИЛИ СТРАНИЦЫ ПОРТФОЛИО (portfolio.html) + ЛАЙТБОКС
+   ========================================================================== */
+.portfolio-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 15px; m
+    argin-bottom: 40px;
+    padding: 0 5%;
+}
+
+.tab-btn {
+    padding: 10px 24px;
+    border: 1px solid var(--primary);
+    background: none;
+    color: var(--primary);
+    border-radius: 24px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.tab-btn.active, .tab-btn:hover {
+    background: var(--primary);
+    color: #fff;
+}
+
+.portfolio-grid {
+    display: grid;
+    /* grid-template-columns заставит сетку всегда держать 3 колонки на десктопе и не даст карточкам расширяться */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto 80px;
+    padding: 0 5%;
+}
+
+.portfolio-item {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03);
+    border: 1px solid #e2e8f0;
+    cursor: pointer;
+    transition: var(--transition);
+    width: 100%; /* Карточка строго занимает только свою 1/3 часть сетки */
+}
+
+.portfolio-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+}
+
+.portfolio-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover; /* Картинка аккуратно заполнит блок, излишки обрежутся без деформации */
+    display: block;
+}
+.portfolio-info {
+    padding: 25px;
+}
+.item-tag {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.portfolio-info h3 {
+    font-size: 20px;
+    color: var(--dark);
+    margin-bottom: 8px;
+}
+
+.item-summary {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.5;
+}
+
+/* Модальное окно */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.modal.open {
+    display: flex;
+}
+
+.modal-content {
+    background: #fff;
+    width: 100%;
+    max-width: 600px;
+    padding: 40px;
+    border-radius: 16px;
+    position: relative;
+    animation: modalFade 0.3s ease;
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 32px;
+    background: none;
+    border: none;
+    color: var(--text);
+    cursor: pointer;
+    line-height: 1;
+}
+
+.modal-tag {
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.modal-title {
+    margin: 10px 0 20px;
+    color: var(--dark);
+    font-size: 26px;
+}
+
+.modal-desc {
+    line-height: 1.7;
+    color: var(--text);
+    font-size: 15px;
+}
+
+@keyframes modalFade {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   5. СТИЛИ СТРАНИЦЫ КОНТАКТОВ (contacts.html)
+   ========================================================================== */
+.contacts-grid-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 1100px;
+    margin: 0 auto 80px;
+    padding: 0 5%;
+    align-items: start;
+}
+
+.contacts-card-info, .contacts-card-form {
+    background: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+    border: 1px solid #e2e8f0;
+}
+
+.contacts-grid-layout h2 { font-size: 24px; color: var(--dark); margin-bottom: 30px; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; }
+.contact-block-item { display: flex; align-items: flex-start; gap: 20px; margin-bottom: 25px; }
+.contact-icon { font-size: 24px; background: #eff6ff; padding: 10px; border-radius: 8px; line-height: 1; }
+.contact-block-item strong { display: block; font-size: 14px; color: var(--dark); margin-bottom: 4px; }
+.contact-block-item p, .contact-block-item a { font-size: 15px; color: var(--text); text-decoration: none; line-height: 1.5; }
+.contact-block-item a:hover { color: var(--primary); text-decoration: underline; }
+
+/* ==========================================================================
+   6. СТИЛИ СТРАНИЦЫ «О НАС» (about.html)
+   ========================================================================== */
+.about-info {
+    max-width: 800px;
+    margin: 0 auto 40px;
+    padding: 0 5%;
+    text-align: center;
+}
+
+.about-info h2 {
+    margin-bottom: 20px;
+    color: var(--dark);
+    font-size: 28px;
+}
+
+.about-info p {
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 15px;
+    color: var(--text);
+}
+
+.team-section {
+    padding: 60px 5% 80px;
+    background: #fff;
+    text-align: center;
+    border-top: 1px solid #e2e8f0;
+}
+
+.team-section h2 {
+    margin-bottom: 40px;
+    color: var(--dark);
+    font-size: 28px;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 30px; max-width: 1100px; margin: 0 auto;
+}
+
+.team-card {
+    background: var(--light);
+    padding: 40px 20px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    text-align: center;
+}
+
+.team-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    object-fit: cover; /* Это свойство красиво впишет любое фото в круг без искажения пропорций */
+    display: block;
+}
+
+.team-card h3 {
+    font-size: 18px;
+    color: var(--dark);
+    margin-bottom: 5px;
+}
+
+.team-card p {
+    font-size: 14px;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   7. АДАПТИВНАЯ ВЕРСТКА ДЛЯ ВСЕХ ЭКРАНОВ
+   ========================================================================== */
+@media (max-width: 992px) {
+    .hero h1 { font-size: 36px; }
+    .stats { padding: 60px 5%; }
+    .stat-number { font-size: 38px; }
+}
+
+@media (max-width: 868px) {
+    .contacts-grid-layout { grid-template-columns: 1fr; gap: 30px; }
+    .contacts-card-info, .contacts-card-form { padding: 30px 20px; }
+    .hero { height: auto; padding: 60px 5%; }
+    .stats { grid-template-columns: 1fr; gap: 20px; }
+    .portfolio-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+    .nav { display: none; }
+    .burger { display: block; width: 30px; height: 20px; position: relative; }
+    .burger span, .burger::before, .burger::after { content: ''; position: absolute; width: 100%; height: 2px; background: var(--dark); }
+    .burger::before { top: 0; }
+    .burger span { top: 9px; }
+    .burger::after { bottom: 0; }
+    .page-header h1 { font-size: 28px; }
+    .hero-actions { flex-direction: column; }
+}
+
+/* ==========================================================================
+   8. СТИЛИ ДЛЯ ПОДВАЛА (Footer)
+   ========================================================================== */
+.footer {
+    background: var(--dark);
+    color: #94a3b8;
+    padding: 60px 5% 40px;
+    border-top: 1px solid #1e293b;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 50px;
+}
+
+.footer-brand .logo {
+    color: #fff;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.footer-brand p {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer h4 {
+    color: #fff;
+    font-size: 16px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.footer-links a {
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 14px;
+    margin-bottom: 12px;
+    transition: var(--transition);
+}
+
+.footer-links a:hover {
+    color: var(--primary);
+    transform: translateX(3px);
+}
+
+.footer-legal {
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.footer-legal p {
+    margin-bottom: 10px;
+}
+
+/* Адаптив для футера */
+@media (max-width: 868px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+    .footer h4 {
+        margin-bottom: 12px;
+    }
+}
+
+.img-center-fix {
+    object-position: left center;
+}
+
+/* Служебный класс для мягкого скрытия элементов без деформации Grid-сетки */
+.portfolio-item-hidden {
+    display: none !important;
+}

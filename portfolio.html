@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Agency | Кейсы и результаты</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Навигация -->
+    <header class="header">
+        <a href="index.html" class="logo">Digital<span>Go</span></a>
+        <nav class="nav">
+            <a href="services.html">Услуги</a>
+            <a href="portfolio.html" class="active">Портфолио</a>
+            <a href="about.html">О нас</a>
+            <a href="contacts.html">Контакты</a>
+        </nav>
+        <button class="burger" aria-label="Открыть меню"><span></span></button>
+    </header>
+
+    <main class="portfolio-page">
+        <section class="page-header">
+            <h1>Кейсы и результаты</h1>
+            <p>Реальные истории трансформации бизнеса: от проектирования архитектуры до кратного роста конверсии.</p>
+        </section>
+
+        <!-- Табы фильтрации -->
+        <div class="portfolio-tabs">
+            <button class="tab-btn active" data-filter="all">Все проекты</button>
+            <button class="tab-btn" data-filter="web">Разработка</button>
+            <button class="tab-btn" data-filter="marketing">Маркетинг</button>
+        </div>
+
+        <!-- Сетка проектов -->
+        <section class="portfolio-grid">
+            <div class="portfolio-item animate-fade visible" data-category="web" data-title="E-commerce Мебель" data-desc="Разработка крупного интернет-магазина премиальной мебели...">
+                <!-- Заменили div на img и указали путь к скриншоту первого проекта -->
+                <img src="https://avatars.mds.yandex.net/i?id=aadb5737084e104cf69a2fddafd8085c64f6eb8f-4902635-images-thumbs&n=13" alt="Магазин мебели Диван Эксперт" class="portfolio-img">
+                <div class="portfolio-info">
+                    <span class="item-tag">E-commerce / Web</span>
+                    <h3>Премиальный ритейлер мебели «Alberta»</h3>
+                    <p class="item-summary">Интеграция с ERP, кастомный конфигуратор и ускорение загрузки страниц.</p>
+                </div>
+            </div>
+
+            <div class="portfolio-item animate-fade visible" data-category="marketing" data-title="Performance для Авто" data-desc="Комплексный маркетинг федеральной сети автосервисов...">
+                <!-- Заменили div на img и указали путь к скриншоту второго проекта -->
+                <img src="https://topfranchise.ru/upload/iblock/e63/1k9hmbj1js0fetld3nzice3u24jrjjev.jpg" alt="Маркетинг CarDoc" class="portfolio-img img-center-fix">
+                <div class="portfolio-info">
+                    <span class="item-tag">Performance Marketing</span>
+                    <h3>Федеральная сеть автосервисов «Стайер СТО»</h3>
+                    <p class="item-summary">Снижение CPL на 34% и внедрение сквозной аналитики Roistat.</p>
+                </div>
+            </div>
+
+            <div class="portfolio-item animate-fade visible" data-category="web" data-title="Сайт ЖК" data-desc="UX/UI проектирование и фронтенд-верстка для жилого комплекса...">
+                <!-- Заменили div на img и указали путь к скриншоту третьего проекта -->
+                <img src="https://avatars.mds.yandex.net/i?id=578847e0f71ea2e571f45c4f1071ad12b885c6ee-5436811-images-thumbs&n=13" alt="Сайт ЖК Verde Plaza" class="portfolio-img">
+                <div class="portfolio-info">
+                    <span class="item-tag">UX/UI & Front-end</span>
+                    <h3>Жилой Комплекс бизнес-класса «Verde Plaza»</h3>
+                    <p class="item-summary">Интерактивный выбор квартир на генплане и кастомные JS анимации.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Модальное окно (Лайтбокс) для кейсов -->
+        <div id="portfolioModal" class="modal">
+            <div class="modal-content">
+                <button class="modal-close">&times;</button>
+                <div class="modal-body">
+                    <span class="modal-tag">Категория</span>
+                    <h2 class="modal-title">Название проекта</h2>
+                    <p class="modal-desc">Подробное описание результатов работы...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+        <!-- Подвал сайта (Футер) -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">Digital<span>Go</span></a>
+                <p>DigitalGo Holding Inc. — международная технологическая корпорация. Проектируем и масштабируем цифровые экосистемы для бизнеса на рынках СНГ, Азии и Европы. Лидеры отрасли по версии TechRating 2025.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Навигация</h4>
+                <a href="services.html">Услуги</a>
+                <a href="portfolio.html">Кейсы</a>
+                <a href="about.html">О корпорации</a>
+                <a href="contacts.html">Контакты</a>
+            </div>
+            <div class="footer-legal">
+                <h4>Правовая информация</h4>
+                <p>© 2017—2026 DigitalGo Corporation. Все права защищены.</p>
+                <p>Содержимое сайта не является публичной офертой. Политика конфиденциальности. Пользовательское соглашение.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
