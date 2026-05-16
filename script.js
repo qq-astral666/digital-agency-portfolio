@@ -106,3 +106,53 @@ document.addEventListener('DOMContentLoaded', () => {
         statNumbers.forEach(num => statsObserver.observe(num));
     }
 });
+
+    // 5. Фильтрация Портфолио по табам (ФИНАЛЬНАЯ НЕЗАВИСИМАЯ ВЕРСИЯ)
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+    if (tabButtons.length > 0 && portfolioItems.length > 0) {
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Переключение активного класса у кнопок табов
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const filterValue = button.getAttribute('data-filter');
+
+                portfolioItems.forEach(item => {
+                    const category = item.getAttribute('data-category');
+
+                    if (filterValue === 'all' || category === filterValue) {
+                        // Показываем элемент: убираем класс скрытия
+                        item.classList.remove('portfolio-item-hidden');
+                        // Сбрасываем конфликтующие инлайновые стили от анимаций, возвращая чистый CSS
+                        item.style.opacity = '';
+                        item.style.transform = '';
+                    } else {
+                        // Скрываем элемент через класс display: none !important
+                        item.classList.add('portfolio-item-hidden');
+                    }
+                });
+            });
+        });
+    }
+
+    // 2. АККОРДЕОН ДЛЯ FAQ
+const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+accordionHeaders.forEach(header => {
+    header.addEventListener('click', () => {
+        const accordionItem = header.parentElement;
+
+        // Закрываем другие открытые вкладки (если нужно, чтобы открыта была только одна)
+        document.querySelectorAll('.accordion-item').forEach(item => {
+            if (item !== accordionItem) {
+                item.classList.remove('active');
+            }
+        });
+
+        // Переключаем класс active для текущей вкладки
+        accordionItem.classList.toggle('active');
+    });
+});

@@ -20,7 +20,9 @@ body {
     overflow-x: hidden;
 }
 
-/* 1. ХЕДЕР И НАВИГАЦИЯ */
+/* ==========================================================================
+   1. ОБЩИЕ КОМПОНЕНТЫ И ХЕДЕР (Для всех страниц)
+   ========================================================================== */
 .header {
     display: flex;
     justify-content: space-between;
@@ -76,23 +78,60 @@ body {
 
 .burger .line:last-child { margin-bottom: 0; }
 
-/* Анимация превращения бургера в крестик */
-.burger.active .line:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-}
-.burger.active .line:nth-child(2) {
-    opacity: 0;
-}
-.burger.active .line:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-}
+/* Анимация бургера */
+.burger.active .line:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.burger.active .line:nth-child(2) { opacity: 0; }
+.burger.active .line:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-/* Обертка контента */
+/* Обертка контента внутренних страниц */
 .page-wrapper, .hero {
     margin-top: 75px;
 }
 
-/* 2. СТИЛИ ГЛАВНОЙ СТРАНИЦЫ */
+/* Общая шапка внутренних страниц */
+.page-header {
+    text-align: center;
+    padding: 120px 5% 60px;
+    background: #eff6ff;
+    margin-bottom: 40px;
+}
+
+.page-header h1 { font-size: 36px; color: var(--dark); margin-bottom: 12px; }
+.page-header p { font-size: 16px; max-width: 600px; margin: 0 auto; color: var(--text); line-height: 1.6; }
+
+/* Кнопки */
+.btn {
+    display: inline-block;
+    padding: 14px 28px;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 15px;
+    transition: var(--transition);
+    text-align: center;
+}
+
+.btn:hover { opacity: 0.95; transform: translateY(-1px); }
+.btn-outline { background: transparent; border: 2px solid var(--primary); color: var(--primary); }
+.btn-outline:hover { background: var(--primary); color: #fff; }
+.btn-block { width: 100%; }
+
+/* Анимации скролла */
+.animate-fade {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.animate-fade.visible { opacity: 1; transform: translateY(0); }
+
+/* ==========================================================================
+   2. СТИЛИ ГЛАВНОЙ СТРАНИЦЫ (index.html)
+   ========================================================================== */
 .hero {
     min-height: calc(100vh - 75px);
     display: flex;
@@ -180,35 +219,160 @@ body {
 .form-group.invalid input { border-color: var(--error); }
 .form-group.invalid .error-msg { display: block; }
 
-.btn {
-    display: inline-block;
-    padding: 14px 28px;
-    background: var(--primary);
-    color: #fff;
-    text-decoration: none;
-    border-radius: 8px;
-    border: none;
-    font-weight: 600;
-    cursor: pointer;
-    font-size: 15px;
+/* ==========================================================================
+   3. СТИЛИ СТРАНИЦЫ УСЛУГ (services.html)
+   ========================================================================== */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto 60px;
+    padding: 0 5%;
+}
+
+.service-card {
+    background: #fff;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03);
+    border: 1px solid #e2e8f0;
     transition: var(--transition);
+}
+
+.service-card:hover { transform: translateY(-5px); box-shadow: 0 12px 24px rgba(15, 23, 42, 0.06); }
+.service-icon { font-size: 40px; margin-bottom: 20px; display: block; }
+.service-card h3 { font-size: 22px; color: var(--dark); margin-bottom: 12px; }
+.service-card p { line-height: 1.6; font-size: 15px; color: var(--text); }
+
+.faq-section { max-width: 800px; margin: 80px auto; padding: 0 5%; }
+.faq-section h2 { text-align: center; margin-bottom: 40px; font-size: 28px; color: var(--dark); }
+.accordion-item { background: #fff; margin-bottom: 15px; border-radius: 8px; border: 1px solid #e2e8f0; overflow: hidden; }
+.accordion-header {
+    width: 100%; padding: 22px; text-align: left; background: none; border: none;
+    font-size: 18px; font-weight: 600; color: var(--dark); cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+}
+.accordion-header span { font-size: 20px; color: var(--primary); transition: var(--transition); }
+.accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.3s cubic-bezier(0, 1, 0, 1); background: #fafafa; }
+.accordion-body p { padding: 22px; color: var(--text); line-height: 1.7; font-size: 15px; }
+.accordion-item.active .accordion-body { max-height: 1000px; transition: max-height 0.5s ease-in-out; }
+.accordion-item.active .accordion-header span { transform: rotate(45deg); }
+
+/* ==========================================================================
+   4. СТИЛИ СТРАНИЦЫ ПОРТФОЛИО (portfolio.html)
+   ========================================================================== */
+.portfolio-tabs { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; padding: 0 5%; }
+.tab-btn {
+    padding: 10px 24px; border: 1px solid var(--primary); background: none;
+    color: var(--primary); border-radius: 24px; cursor: pointer; font-weight: 600; transition: var(--transition);
+}
+.tab-btn.active, .tab-btn:hover { background: var(--primary); color: #fff; }
+
+.portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width: 1200px; margin: 0 auto 80px; padding: 0 5%; }
+.portfolio-item { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03); border: 1px solid #e2e8f0; cursor: pointer; transition: var(--transition); width: 100%; }
+.portfolio-item:hover { transform: translateY(-5px); box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08); }
+.portfolio-img { width: 100%; height: 220px; object-fit: cover; display: block; }
+.img-center-fix { object-position: center center; }
+.portfolio-info { padding: 25px; }
+.item-tag { font-size: 12px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 8px; }
+.portfolio-info h3 { font-size: 20px; color: var(--dark); margin-bottom: 8px; }
+.item-summary { font-size: 14px; color: var(--text); line-height: 1.5; }
+.portfolio-item-hidden { display: none !important; }
+
+/* Модальное окно */
+.modal {
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px); z-index: 2000;
+    align-items: center; justify-content: center; padding: 20px;
+}
+.modal.open { display: flex; }
+.modal-content {
+    background: #fff; width: 100%; max-width: 600px; padding: 40px;
+    border-radius: 16px; position: relative; animation: modalFade 0.3s ease;
+}
+.modal-close { position: absolute; top: 20px; right: 20px; font-size: 32px; background: none; border: none; color: var(--text); cursor: pointer; line-height: 1; }
+.modal-tag { color: var(--primary); font-weight: 600; font-size: 14px; }
+.modal-title { margin: 10px 0 20px; color: var(--dark); font-size: 26px; }
+.modal-desc { line-height: 1.7; color: var(--text); font-size: 15px; }
+
+@keyframes modalFade {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   5. СТИЛИ СТРАНИЦЫ КОНТАКТОВ (contacts.html)
+   ========================================================================== */
+.contacts-grid-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 1100px;
+    margin: 0 auto 80px;
+    padding: 0 5%;
+    align-items: start;
+}
+
+.contacts-card-info, .contacts-card-form {
+    background: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+    border: 1px solid #e2e8f0;
+}
+
+.contacts-grid-layout h2 { font-size: 24px; color: var(--dark); margin-bottom: 30px; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; }
+.contact-block-item { display: flex; align-items: flex-start; gap: 20px; margin-bottom: 25px; }
+.contact-icon { font-size: 24px; background: #eff6ff; padding: 10px; border-radius: 8px; line-height: 1; }
+.contact-block-item strong { display: block; font-size: 14px; color: var(--dark); margin-bottom: 4px; }
+.contact-block-item p, .contact-block-item a { font-size: 15px; color: var(--text); text-decoration: none; line-height: 1.5; }
+.contact-block-item a:hover { color: var(--primary); text-decoration: underline; }
+
+/* ==========================================================================
+   6. СТИЛИ СТРАНИЦЫ «О НАС» (about.html)
+   ========================================================================== */
+.about-info { max-width: 800px; margin: 0 auto 40px; padding: 0 5%; text-align: center; }
+.about-info h2 { margin-bottom: 20px; color: var(--dark); font-size: 28px; }
+.about-info p { font-size: 16px; line-height: 1.8; margin-bottom: 15px; color: var(--text); }
+
+.team-section { padding: 60px 5% 80px; background: #fff; text-align: center; border-top: 1px solid #e2e8f0; }
+.team-section h2 { margin-bottom: 40px; color: var(--dark); font-size: 28px; }
+
+/* Фиксируем сетку для руководителей (Жесткие 3 колонки на ПК) */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.team-card {
+    background: var(--light);
+    padding: 30px 20px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
     text-align: center;
+    width: 100%;
 }
 
-.btn:hover { opacity: 0.95; transform: translateY(-1px); }
-.btn-outline { background: transparent; border: 2px solid var(--primary); color: var(--primary); }
-.btn-outline:hover { background: var(--primary); color: #fff; }
-.btn-block { width: 100%; }
-
-.animate-fade {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+/* Ограничиваем размеры аватарки руководителя и делаем её идеально круглой */
+.team-avatar {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    object-fit: cover;
+    display: block;
 }
 
-.animate-fade.visible { opacity: 1; transform: translateY(0); }
+.team-card h3 { font-size: 18px; color: var(--dark); margin-bottom: 5px; }
+.team-card p { font-size: 14px; color: var(--primary); font-weight: 600; }
 
-/* ПОДВАЛ */
+/* ==========================================================================
+   7. ПОДВАЛ (Footer)
+   ========================================================================== */
 .footer { background: var(--dark); color: #94a3b8; padding: 60px 5% 40px; border-top: 1px solid #1e293b; margin-top: auto; }
 .footer-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; }
 .footer-brand .logo { color: #fff; display: inline-block; margin-bottom: 15px; }
@@ -220,49 +384,43 @@ body {
 .footer-legal { font-size: 13px; line-height: 1.6; }
 
 /* ==========================================================================
-   МЕДИА-ЗАПРОСЫ (Адаптив)
+   8. АДАПТИВНАЯ ВЕРСТКА ДЛЯ ВСЕХ ЭКРАНОВ
    ========================================================================== */
-@media (max-width: 992px) {
-    .hero h1 { font-size: 36px; }
-    .stats { padding: 60px 5%; }
-    .stat-number { font-size: 38px; }
-}
-
 @media (max-width: 768px) {
-    .burger { display: block; } /* Показываем бургер */
-
-    .nav {
-        display: flex !important;
+    /* 1. Перестраиваем шапку в колонку и центрируем элементы */
+    header,
+    .nav-container { /* замени класс на имя своего главного контейнера в шапке, если нужно */
+        display: flex;
         flex-direction: column;
-        position: fixed;
-        top: 0;
-        right: -100%; /* Меню спрятано справа */
-        width: 75%;
-        max-width: 300px;
-        height: 100vh;
-        background: #fff;
-        padding: 100px 30px 40px;
-        box-shadow: -5px 0 20px rgba(0,0,0,0.1);
-        gap: 24px;
-        z-index: 1000;
-        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        align-items: center;
+        text-align: center;
+        padding: 15px 0;
     }
 
-    .nav.active {
-        right: 0; /* Меню выезжает на экран */
+    /* 2. Делаем отступ снизу от логотипа, чтобы он не слипался с кнопками */
+    .logo,
+    header a.logo-link,
+    .DigitalGo { /* подставь класс своего тега с логотипом DigitalGo */
+        margin-bottom: 15px;
+        margin-right: 0 !important; /* сбрасываем боковые отступы */
     }
 
-    .nav a {
+    /* 3. Выстраиваем навигацию в ряд с переносом или в линию */
+    .nav,
+    header nav,
+    .nav-menu { /* подставь класс своего тега <nav> или <ul> */
+        display: flex;
+        flex-direction: row; /* кнопки будут идти в одну строку */
+        flex-wrap: wrap;     /* если экран совсем узкий, они аккуратно перенослись */
+        justify-content: center;
+        gap: 15px;           /* расстояние между кнопками */
+        padding: 0;
         margin: 0;
-        font-size: 18px;
-        font-weight: 600;
-        border-bottom: 1px solid #f1f5f9;
-        padding-bottom: 10px;
+        list-style: none;
     }
 
-    .hero { height: auto; padding: 140px 5% 60px; }
-    .hero h1 { font-size: 30px; }
-    .hero-actions { flex-direction: column; }
-    .stats { grid-template-columns: 1fr; gap: 20px; }
-    .footer-container { grid-template-columns: 1fr; gap: 35px; }
+    /* Дополнительно: убираем лишние стили бургер-меню, если они мешают */
+    .burger {
+        display: none !important; /* скрываем иконку бургера, так как меню теперь открыто */
+    }
 }
