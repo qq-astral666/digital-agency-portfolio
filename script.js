@@ -163,3 +163,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+    // 7. Мобильное бургер-меню (Для открытия навигации на телефонах)
+    const burgerBtn = document.querySelector('.burger');
+    const navMenu = document.querySelector('.nav');
+
+    if (burgerBtn && navMenu) {
+        burgerBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Предотвращаем мгновенное закрытие по клику на саму кнопку
+            burgerBtn.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Закрываем меню, если кликнули в любое другое место экрана
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !burgerBtn.contains(e.target)) {
+                burgerBtn.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+    }

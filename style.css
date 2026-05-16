@@ -655,22 +655,79 @@ body {
     margin-bottom: 10px;
 }
 
-/* Адаптив для футера */
-@media (max-width: 868px) {
-    .footer-container {
-        grid-template-columns: 1fr;
-        gap: 35px;
+@media (max-width: 768px) {
+    /* Фиксируем шапку и убираем конфликты */
+    .header {
+        padding: 15px 5%;
+        justify-content: space-between;
     }
-    .footer h4 {
-        margin-bottom: 12px;
+
+    /* Скрытое состояние мобильного меню (выезжает сверху/сбоку) */
+    .nav {
+        display: flex !important;
+        flex-direction: column;
+        position: fixed;
+        top: 65px; /* Высота вашей шапки */
+        left: -100%; /* Изначально меню спрятано за левым краем экрана */
+        width: 80%;
+        max-width: 300px;
+        height: calc(100vh - 65px);
+        background: #fff;
+        box-shadow: 5px 0 15px rgba(0,0,0,0.05);
+        padding: 30px;
+        gap: 20px;
+        transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Плавное выезжание */
+        z-index: 999;
     }
-}
 
-.img-center-fix {
-    object-position: left center;
-}
+    /* Состояние, когда меню ОТКРЫТО */
+    .nav.active {
+        left: 0; /* Меню выезжает на экран */
+    }
 
-/* Служебный класс для мягкого скрытия элементов без деформации Grid-сетки */
-.portfolio-item-hidden {
-    display: none !important;
+    .nav a {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 600;
+        padding: 10px 0;
+        border-bottom: 1px solid #f1f5f9;
+    }
+
+    /* Позиционирование кнопки бургера */
+    .burger {
+        display: block;
+        width: 30px;
+        height: 24px;
+        position: relative;
+        z-index: 1001;
+    }
+
+    /* Три полоски бургера */
+    .burger span, .burger::before, .burger::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background: var(--dark);
+        transition: var(--transition);
+        left: 0;
+    }
+
+    .burger::before { top: 0; }
+    .burger span { top: 11px; }
+    .burger::after { bottom: 0; }
+
+    /* Эффект трансформации бургера в КРЕСТИК при активации */
+    .burger.active span { opacity: 0; } /* Прячем среднюю полоску */
+    .burger.active::before {
+        transform: rotate(45deg);
+        top: 11px;
+    }
+    .burger.active::after {
+        transform: rotate(-45deg);
+        bottom: 11px;
+    }
+
+    .stats { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 32px; }
 }
